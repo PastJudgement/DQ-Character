@@ -56,9 +56,10 @@ object DataMaster {
         Log.d(TAG, "Data to be saved is $characterDetailsString")
         editor.putString(dataMasterSaveDetailsKey, characterDetailsString)  //CAN I save a class and then send it to another file and use it? Do I need an interface or just make it an open?
         editor.apply()
+        dataDetailsCache = characterDetailsDataClass(name, avatarPicture)
     }
 
-    fun saveCharacterStats(PS: Int?, MD: Int?, AG: Int?, MA: Int?, WP: Int?, EN: Int?, FT: Int?, PC: Int?, TMR: Int?, PB: Int?, DEF: Int?, PROT: Int?){
+    fun saveCharacterStats(PS: Int, MD: Int, AG: Int, MA: Int, WP: Int, EN: Int, FT: Int, PC: Int, TMR: Int, PB: Int, DEF: Int, PROT: Int){
         val userDefaults: SharedPreferences = context.getSharedPreferences(dataMasterSaveStatsKey, 0)
         val editor = userDefaults.edit()
         val characterStatsString = "{\n" +
@@ -78,6 +79,7 @@ object DataMaster {
         Log.d(TAG, "Character stats to be saved is $characterStatsString")
         editor.putString(dataMasterSaveStatsKey, characterStatsString)
         editor.apply()
+        dataStatsCache = characterStatsDataClass(PS,MD,AG,MA,WP,EN,FT,PC,TMR,PB,DEF,PROT)
     }
 
     fun saveCharacterRanks(){

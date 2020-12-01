@@ -31,8 +31,8 @@ class CharacterSheetPageOne : Fragment() {
     var PC = 5
     var TMR = 5
     var PB = 5
-    var DEF = 5
-    var PROT = 5
+    var DEF = 0
+    var PROT = 0
     var INIT = 5
 
     override fun onCreateView(
@@ -68,7 +68,7 @@ class CharacterSheetPageOne : Fragment() {
 
 
         //sets saved info if it exists
-        Log.d(TAG, "${DataMaster.loadCharacterDetails()}")
+
         if (DataMaster.dataDetailsCache?.Name != null){
             Log.d(TAG, "${DataMaster.loadCharacterDetails()}")
             val savedData = DataMaster.loadCharacterDetails()
