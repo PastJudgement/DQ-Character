@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CharacterSheetPageOne">
+
+    <EditText
+        android:id="@+id/character_name_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:hint="What is this characters name?"
+        android:imeOptions="actionDone"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:textSize="25sp"
+        android:clickable="true"
+        android:inputType="textFilter|textNoSuggestions"
+        android:textAlignment="center"
+        android:background="@null"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/character_imageview"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/character_name_textview"
+        tools:src="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/stats_announcment_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Character Stats"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/character_imageview" />
+
+    <View
+        android:id="@+id/view_line"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="4dp"
+        android:background="#7f7f7e"
+        app:layout_constraintBottom_toTopOf="@+id/md_textview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/stats_announcment_textview" />
+
+    <EditText
+        android:id="@+id/ps_textview"
+        android:layout_width="72dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:hint="PS = "
+        android:imeOptions="actionDone"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:clickable="true"
+        android:inputType="textFilter|textNoSuggestions"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/stats_announcment_textview" />
+
+    <EditText
+        android:id="@+id/md_textview"
+        android:layout_width="72dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:hint="MD ="
+        android:imeOptions="actionDone"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:clickable="true"
+        android:inputType="textFilter|textNoSuggestions"
+        android:textAlignment="center"
+        app:layout_constraintStart_toEndOf="@+id/ps_textview"
+        app:layout_constraintTop_toTopOf="@+id/ps_textview" />
+
+    <EditText
+        android:id="@+id/ag_textview"
+        android:layout_width="72dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:hint="AG ="
+        android:imeOptions="actionDone"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:clickable="true"
+        app:layout_constraintStart_toEndOf="@+id/md_textview"
+        app:layout_constraintTop_toTopOf="@+id/md_textview" />
+
+    <EditText
+        android:id="@+id/ma_textview"
+        android:layout_width="72dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:hint="MA ="
+        android:imeOptions="actionDone"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:clickable="true"
+        app:layout_constraintStart_toEndOf="@+id/ag_textview"
+        app:layout_constraintTop_toTopOf="@+id/ag_textview" />
+
+    <EditText
+        android:id="@+id/wp_textview"
+        android:layout_width="72dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:hint="WP ="
+        android:imeOptions="actionDone"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:clickable="true"
+        app:layout_constraintStart_toEndOf="@+id/ma_textview"
+        app:layout_constraintTop_toTopOf="@+id/ma_textview" />
+
+    <EditText
+        android:id="@+id/en_textview"
+        android:layout_width="72dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:hint="EN ="
+        android:imeOptions="actionDone"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:clickable="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ps_textview" />
+
+    <EditText
+        android:id="@+id/ft_textview"
+        android:layout_width="72dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:hint="FT ="
+        android:imeOptions="actionDone"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:clickable="true"
+        app:layout_constraintStart_toEndOf="@+id/en_textview"
+        app:layout_constraintTop_toTopOf="@+id/en_textview" />
+
+    <EditText
+        android:id="@+id/pc_textview"
+        android:layout_width="72dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:hint="PC ="
+        android:imeOptions="actionDone"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:clickable="true"
+        app:layout_constraintStart_toEndOf="@+id/ft_textview"
+        app:layout_constraintTop_toTopOf="@+id/ft_textview" />
+
+    <EditText
+        android:id="@+id/tmr_textview"
+        android:layout_width="72dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:hint="TMR ="
+        android:imeOptions="actionDone"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:clickable="true"
+        app:layout_constraintStart_toEndOf="@+id/pc_textview"
+        app:layout_constraintTop_toTopOf="@+id/pc_textview" />
+
+    <EditText
+        android:id="@+id/pb_textview"
+        android:layout_width="72dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:hint="PB ="
+        android:imeOptions="actionDone"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:clickable="true"
+        app:layout_constraintStart_toEndOf="@+id/tmr_textview"
+        app:layout_constraintTop_toTopOf="@+id/tmr_textview" />
+
+    <EditText
+        android:id="@+id/def_textview"
+        android:layout_width="72dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="DEF ="
+        android:imeOptions="actionDone"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:clickable="true"
+        app:layout_constraintStart_toStartOf="@+id/ft_textview"
+        app:layout_constraintTop_toBottomOf="@+id/ft_textview" />
+
+    <EditText
+        android:id="@+id/prot_textview"
+        android:layout_width="72dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:hint="PROT ="
+        android:imeOptions="actionDone"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:clickable="true"
+        app:layout_constraintStart_toEndOf="@+id/def_textview"
+        app:layout_constraintTop_toTopOf="@+id/def_textview" />
+
+    <EditText
+        android:id="@+id/init_textview"
+        android:layout_width="72dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:hint="INIT ="
+        android:imeOptions="actionDone"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:clickable="true"
+        app:layout_constraintStart_toEndOf="@+id/prot_textview"
+        app:layout_constraintTop_toTopOf="@+id/prot_textview" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
