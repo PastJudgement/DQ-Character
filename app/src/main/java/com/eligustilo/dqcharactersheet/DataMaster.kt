@@ -44,6 +44,9 @@ object DataMaster {
 
     fun loadDataMaster(newContext: Context) {
         context = newContext
+        loadCharacterDetails()
+        loadCharacterStats()
+        loadCharacterRanks()
     }
 
     fun saveCharacterDetails(name: String, avatarPicture: Int){
@@ -88,35 +91,40 @@ object DataMaster {
 
     fun loadCharacterDetails(): characterDetailsDataClass{
         val userDefaults: SharedPreferences = context.getSharedPreferences(dataMasterSaveDetailsKey, 0)
-        val savedCharacterDetails = userDefaults.getString(dataMasterSaveDetailsKey, "")
+        val savedCharacterDetails = userDefaults.getString(dataMasterSaveDetailsKey, null)
         Log.d(TAG, "The loaded details raw are $savedCharacterDetails")
-        val gsonParser = Gson()
-        val gsonDataType: Type = object: TypeToken<characterDetailsDataClass>() {}.type //So i can make a data class object but can I use it else where? Can I return it?
-        val gsonResults: characterDetailsDataClass = gsonParser.fromJson(savedCharacterDetails, gsonDataType)
-        if (gsonResults != null) {
-            dataDetailsCache = gsonResults
-        }
-        Log.d(TAG, "gson results are $dataDetailsCache")
-        if (dataDetailsCache != null){
-            return dataDetailsCache as characterDetailsDataClass
+        if (savedCharacterDetails != null){
+            val gsonParser = Gson()
+            val gsonDataType: Type = object: TypeToken<characterDetailsDataClass>() {}.type //So i can make a data class object but can I use it else where? Can I return it?
+            val gsonResults: characterDetailsDataClass = gsonParser.fromJson(savedCharacterDetails, gsonDataType)
+            if (gsonResults != null) {
+                dataDetailsCache = gsonResults
+            }
+            Log.d(TAG, "gson results are $dataDetailsCache")
+            if (dataDetailsCache != null){
+                return dataDetailsCache as characterDetailsDataClass
+            }
         }
         return characterDetailsDataClass("should never happen", 1)
     }
 
     fun loadCharacterStats(): characterStatsDataClass {
         val userDefaults: SharedPreferences = context.getSharedPreferences(dataMasterSaveStatsKey, 0)
-        val savedCharacterStats = userDefaults.getString(dataMasterSaveStatsKey, "")
+        val savedCharacterStats = userDefaults.getString(dataMasterSaveStatsKey, null)
         Log.d(TAG, "The loaded stats raw are $savedCharacterStats")
-        val gsonParser = Gson()
-        val gsonDataType: Type = object: TypeToken<characterStatsDataClass>() {}.type
-        val gsonResults: characterStatsDataClass = gsonParser.fromJson(savedCharacterStats, gsonDataType)
-        if (gsonResults != null) {
-            dataStatsCache = gsonResults
+        if (savedCharacterStats != null){
+            val gsonParser = Gson()
+            val gsonDataType: Type = object: TypeToken<characterStatsDataClass>() {}.type
+            val gsonResults: characterStatsDataClass = gsonParser.fromJson(savedCharacterStats, gsonDataType)
+            if (gsonResults != null) {
+                dataStatsCache = gsonResults
+            }
+            Log.d(TAG, "gson results are $dataStatsCache")
+            if (dataStatsCache != null){
+                return dataStatsCache as characterStatsDataClass
+            }
         }
-        Log.d(TAG, "gson results are $dataStatsCache")
-        if (dataStatsCache != null){
-            return dataStatsCache as characterStatsDataClass
-        }
+
         return characterStatsDataClass(0,0,0,0,0,0,0,0,0,0,0,0)
     }
 

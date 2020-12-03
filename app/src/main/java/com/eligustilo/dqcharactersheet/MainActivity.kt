@@ -16,8 +16,8 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(findViewById(R.id.toolbar))
 
         //setup data Objects
-        FormulaMaster.loadFormulaMaster(applicationContext)
-        DataMaster.loadDataMaster(applicationContext)
+        FormulaMaster.loadFormulaMaster(this)
+        DataMaster.loadDataMaster(this)
 
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
             DataMaster.loadCharacterDetails()

@@ -3,7 +3,7 @@
     package="com.eligustilo.dqcharactersheet">
 
     <application
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:icon="@mipmap/test"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"

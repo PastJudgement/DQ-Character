@@ -59,7 +59,7 @@
 
     <EditText
         android:id="@+id/ps_textview"
-        android:layout_width="72dp"
+        android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -75,7 +75,7 @@
 
     <EditText
         android:id="@+id/md_textview"
-        android:layout_width="72dp"
+        android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:hint="MD ="
@@ -90,7 +90,7 @@
 
     <EditText
         android:id="@+id/ag_textview"
-        android:layout_width="72dp"
+        android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:hint="AG ="
@@ -103,7 +103,7 @@
 
     <EditText
         android:id="@+id/ma_textview"
-        android:layout_width="72dp"
+        android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:hint="MA ="
@@ -116,7 +116,7 @@
 
     <EditText
         android:id="@+id/wp_textview"
-        android:layout_width="72dp"
+        android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:hint="WP ="
@@ -129,7 +129,7 @@
 
     <EditText
         android:id="@+id/en_textview"
-        android:layout_width="72dp"
+        android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
@@ -143,7 +143,7 @@
 
     <EditText
         android:id="@+id/ft_textview"
-        android:layout_width="72dp"
+        android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:hint="FT ="
@@ -156,7 +156,7 @@
 
     <EditText
         android:id="@+id/pc_textview"
-        android:layout_width="72dp"
+        android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:hint="PC ="
@@ -169,7 +169,7 @@
 
     <EditText
         android:id="@+id/tmr_textview"
-        android:layout_width="72dp"
+        android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:hint="TMR ="
@@ -182,7 +182,7 @@
 
     <EditText
         android:id="@+id/pb_textview"
-        android:layout_width="72dp"
+        android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:hint="PB ="
@@ -195,41 +195,40 @@
 
     <EditText
         android:id="@+id/def_textview"
-        android:layout_width="72dp"
+        android:layout_width="75dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:clickable="true"
         android:hint="DEF ="
         android:imeOptions="actionDone"
         android:maxLines="1"
         android:singleLine="true"
-        android:clickable="true"
-        app:layout_constraintStart_toStartOf="@+id/ft_textview"
+        app:layout_constraintStart_toEndOf="@+id/en_textview"
         app:layout_constraintTop_toBottomOf="@+id/ft_textview" />
 
     <EditText
         android:id="@+id/prot_textview"
-        android:layout_width="72dp"
+        android:layout_width="75dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:clickable="true"
         android:hint="PROT ="
         android:imeOptions="actionDone"
         android:maxLines="1"
         android:singleLine="true"
-        android:clickable="true"
+        app:layout_constraintEnd_toStartOf="@+id/init_textview"
         app:layout_constraintStart_toEndOf="@+id/def_textview"
         app:layout_constraintTop_toTopOf="@+id/def_textview" />
 
     <EditText
         android:id="@+id/init_textview"
-        android:layout_width="72dp"
+        android:layout_width="75dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:clickable="true"
         android:hint="INIT ="
         android:imeOptions="actionDone"
         android:maxLines="1"
         android:singleLine="true"
-        android:clickable="true"
-        app:layout_constraintStart_toEndOf="@+id/prot_textview"
+        app:layout_constraintEnd_toStartOf="@+id/pb_textview"
         app:layout_constraintTop_toTopOf="@+id/prot_textview" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

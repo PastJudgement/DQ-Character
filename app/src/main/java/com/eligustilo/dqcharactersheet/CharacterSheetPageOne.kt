@@ -4,17 +4,18 @@ import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.OnFocusChangeListener
+import android.view.View.OnTouchListener
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
-import android.widget.Button
-import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.navigation.fragment.findNavController
+import androidx.core.content.ContextCompat.getSystemService
+import androidx.fragment.app.Fragment
+
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -78,22 +79,29 @@ class CharacterSheetPageOne : Fragment() {
 
         if (DataMaster.dataStatsCache != null){
             val savedData = DataMaster.loadCharacterStats()
-            psTextView.text = "PS = ${savedData.PS}"
-//            mdTextView.text = "PS = ${savedData.PS}"
-//            agTextView.text = "PS = ${savedData.PS}"
-//            maTextView.text = "PS = ${savedData.PS}"
-//            wpTextView.text = "PS = ${savedData.PS}"
-//            enTextView.text = "PS = ${savedData.PS}"
-//            ftTextView.text = "PS = ${savedData.PS}"
-//            pcTextView.text = "PS = ${savedData.PS}"
-//            tmrTextView.text = "PS = ${savedData.PS}"
-//            pbTextView.text = "PS = ${savedData.PS}"
-//            defTextView.text = "PS = ${savedData.PS}"
-//            protTextView.text = "PS = ${savedData.PS}"
+            psTextView.text = "PS: ${savedData.PS}"
+            mdTextView.text = "MD: ${savedData.MD}"
+            agTextView.text = "AG: ${savedData.AG}"
+            maTextView.text = "MA: ${savedData.MA}"
+            wpTextView.text = "WP: ${savedData.WP}"
+            enTextView.text = "EN: ${savedData.EN}"
+            ftTextView.text = "FT: ${savedData.FT}"
+            pcTextView.text = "PC: ${savedData.PC}"
+            tmrTextView.text = "TMR: ${savedData.TMR}"
+            pbTextView.text = "PB: ${savedData.PB}"
+            defTextView.text = "DEF: ${savedData.DEF}"
+            protTextView.text = "PROT: ${savedData.PROT}"
         }
 
 
         //set onClickListeners
+        characterName.setOnFocusChangeListener(OnFocusChangeListener { v, hasFocus ->
+            if (hasFocus) {
+                Log.d(TAG, "Clicked")
+                characterName.text = ""
+                showKeyboard()
+            } // Instead of your Toast
+        })
         characterName.setOnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_DONE || event.keyCode == KeyEvent.KEYCODE_ENTER || event.keyCode == KeyEvent.ACTION_DOWN ) {
                 Log.d(TAG, v.text.toString())
@@ -112,6 +120,12 @@ class CharacterSheetPageOne : Fragment() {
             false
         }
 
+
+        psTextView.setOnTouchListener(OnTouchListener { v, event ->
+            Log.d(TAG, "Clicked")
+            psTextView.text = ""
+            false
+        })
         psTextView.setOnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_DONE || event.keyCode == KeyEvent.KEYCODE_ENTER || event.keyCode == KeyEvent.ACTION_DOWN ) {
                 Log.d(TAG, v.text.toString())
@@ -132,5 +146,34 @@ class CharacterSheetPageOne : Fragment() {
             false
         }
 
+        mdTextView.setOnTouchListener(OnTouchListener { v, event ->
+            Log.d(TAG, "Clicked")
+            mdTextView.text = ""
+            false
+        })
+        mdTextView.setOnEditorActionListener { v, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_DONE || event.keyCode == KeyEvent.KEYCODE_ENTER || event.keyCode == KeyEvent.ACTION_DOWN ) {
+                Log.d(TAG, v.text.toString())
+                mdTextView.text = v.text.trim() // remove the return
+                // closes the keyboard
+                val imm: InputMethodManager? = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
+                if(imm != null) {
+                    imm.hideSoftInputFromWindow(view.windowToken, 0)
+                }
+                // makes it so the nameTextView is not focused object
+                v.clearFocus()
+                MD = mdTextView.text.toString().toInt() //TODO can crash if not proper INT
+                Log.d(TAG, "character MD is ${mdTextView.text}")
+                DataMaster.saveCharacterStats(PS,MD,AG,MA,WP,EN, FT, PC, TMR, PB, DEF, PROT)
+                mdTextView.text = "MD = ${mdTextView.text}"
+                true //done
+            }
+            false
+        }
+    }
+
+    private fun showKeyboard() {
+        val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
     }
 }
