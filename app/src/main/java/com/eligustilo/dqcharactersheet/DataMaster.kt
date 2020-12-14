@@ -2,6 +2,7 @@ package com.eligustilo.dqcharactersheet
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.graphics.drawable.Drawable
 import android.util.Log
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -24,8 +25,8 @@ data class characterStatsDataClass (
 )
 
 data class characterDetailsDataClass(
-    val Name: String,
-    val Avatar: Int
+    val Name: String?,
+    val Avatar: Int?
 )
 
 object DataMaster {
@@ -49,7 +50,7 @@ object DataMaster {
         loadCharacterRanks()
     }
 
-    fun saveCharacterDetails(name: String, avatarPicture: Int){
+    fun saveCharacterDetails(name: String?, avatarPicture: Int){
         val userDefaults: SharedPreferences = context.getSharedPreferences(dataMasterSaveDetailsKey, 0)
         val editor = userDefaults.edit()
         val characterDetailsString = "{\n" +
@@ -105,7 +106,7 @@ object DataMaster {
                 return dataDetailsCache as characterDetailsDataClass
             }
         }
-        return characterDetailsDataClass("should never happen", 1)
+        return characterDetailsDataClass("should never happen", 0)
     }
 
     fun loadCharacterStats(): characterStatsDataClass {
