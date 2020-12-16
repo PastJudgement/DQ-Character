@@ -42,7 +42,7 @@ class CharacterSheetPageTwo : Fragment() {
         imageViewOne.setOnClickListener(){
             Log.d(TAG, "imageViewOne test Clicked")
             if (characterAvatarArray != null) {
-                DataMaster.saveCharacterDetails(null,characterAvatarArray.getResourceId(1,R.mipmap.test))
+                DataMaster.saveCharacterDetails(null,1)
                 Log.d(TAG, "avatar is now ${characterAvatarArray.getResourceId(1,R.mipmap.test)}")
                 this.findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
             }
@@ -51,7 +51,7 @@ class CharacterSheetPageTwo : Fragment() {
         imageViewTwo.setOnClickListener(){
             Log.d(TAG, "imageViewTwo test Clicked")
             if (characterAvatarArray != null) {
-                DataMaster.saveCharacterDetails(null,characterAvatarArray.getResourceId(2,R.mipmap.test2))
+                DataMaster.saveCharacterDetails(null,2)
                 Log.d(TAG, "avatar is now ${characterAvatarArray.getResourceId(2,R.mipmap.test2)}")
                 this.findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
             }

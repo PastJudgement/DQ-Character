@@ -13,19 +13,15 @@ class MainActivity : AppCompatActivity() {
     val TAG = "MainActivity"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        DataMaster.loadDataMaster(this)
+
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbar))
 
-
-
-
-
         val navController = findNavController(R.id.nav_host_fragment)
-
 
         //setup data Objects
         FormulaMaster.loadFormulaMaster(this)
-        DataMaster.loadDataMaster(this)
 
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
             navController.navigate(R.id.action_FirstFragment_to_SecondFragment)

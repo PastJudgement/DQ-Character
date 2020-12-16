@@ -2,7 +2,6 @@ package com.eligustilo.dqcharactersheet
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
@@ -27,7 +26,7 @@ import com.google.android.material.snackbar.Snackbar
 class CharacterSheetPageOne : Fragment() {
     private lateinit var viewModel: CharSheetOneViewModel
     var characterName = "" //comment on usage
-    var characterAvatar = 0
+    var characterAvatarIndex = 0
     val TAG = "CharacterSheetPageOne"
     var PS = 5
     var MD = 5
@@ -81,8 +80,14 @@ class CharacterSheetPageOne : Fragment() {
         //avatar stuff and context stuff
         val characterAvatarArray = this.requireContext()?.resources?.obtainTypedArray(R.array.avatar_ids)
         if (characterAvatarArray != null){
-            characterAvatar = characterAvatarArray.getResourceId(1,R.mipmap.test)
-            imageView.setImageResource(characterAvatarArray.getResourceId(1,R.mipmap.test))
+            val charDetails = DataMaster.loadCharacterDetails()
+            if (charDetails.Avatar != null) {
+                characterAvatarIndex = charDetails.Avatar
+            } else {
+                characterAvatarIndex = 0
+            }
+            val characterAvatarID = characterAvatarArray.getResourceId(characterAvatarIndex,R.mipmap.test)
+            imageView.setImageResource(characterAvatarID)
         }
 
         //sets saved info if it exists
@@ -91,8 +96,14 @@ class CharacterSheetPageOne : Fragment() {
             Log.d(TAG, "${DataMaster.loadCharacterDetails()}")
             val savedData = DataMaster.loadCharacterDetails()
             characterName.text = savedData.Name
-            if (savedData.Avatar != null){
-                imageView.setImageResource(savedData.Avatar)
+            if (savedData.Avatar != null && characterAvatarArray != null){
+                if (savedData.Avatar != null) {
+                    characterAvatarIndex = savedData.Avatar
+                } else {
+                    characterAvatarIndex = 0
+                }
+                val characterAvatarID = characterAvatarArray.getResourceId(characterAvatarIndex,R.mipmap.test)
+                imageView.setImageResource(characterAvatarID)
             }
         }
 
@@ -125,6 +136,9 @@ class CharacterSheetPageOne : Fragment() {
             if (actionId == EditorInfo.IME_ACTION_DONE || event.keyCode == KeyEvent.KEYCODE_ENTER || event.keyCode == KeyEvent.ACTION_DOWN ) {
                 Log.d(TAG, v.text.toString())
                 characterName.text = v.text.trim() // remove the return
+                Log.d(TAG, "character name is ${v.text.toString()}")
+                DataMaster.saveCharacterDetails(v.text.toString(), characterAvatarIndex)
+
                 // closes the keyboard
                 val imm: InputMethodManager? = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
                 if(imm != null) {
@@ -132,8 +146,6 @@ class CharacterSheetPageOne : Fragment() {
                 }
                 // makes it so the nameTextView is not focused object
                 v.clearFocus()
-                Log.d(TAG, "character name is ${characterName.text}")
-                DataMaster.saveCharacterDetails(characterName.text.toString(), characterAvatar)
                 true //done
             }
             false

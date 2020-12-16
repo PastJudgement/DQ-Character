@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import android.graphics.drawable.Drawable
 import android.util.Log
 import com.google.gson.Gson
+import com.google.gson.annotations.SerializedName
 import com.google.gson.reflect.TypeToken
 import java.lang.reflect.Type
 
@@ -26,6 +27,7 @@ data class characterStatsDataClass (
 
 data class characterDetailsDataClass(
     val Name: String?,
+    @SerializedName("avatarNumber")
     val Avatar: Int?
 )
 
@@ -33,7 +35,7 @@ object DataMaster {
     val TAG = "DataMaster"
     private lateinit var context: Context
     private val dataMasterSaveStatsKey = "keyStats"
-    private val dataMasterSaveDetailsKey = "keyDetails"
+    public val dataMasterSaveDetailsKey = "keyDetails"
     private val dataMasterSaveRanksKey = "keyRanks"
 
     var dataStatsCache: characterStatsDataClass? = null
